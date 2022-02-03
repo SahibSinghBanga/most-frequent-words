@@ -4,13 +4,10 @@ function getMostFrequentWords($string, $blackListWords, $limit = 5)
 {
     $string = preg_replace('/ss+/i', '', $string);
 
-    // trim the string
     $string = trim($string);
 
-    // only take alphabet characters, but keep the spaces and dashes too…
     $string = preg_replace('/[^a-zA-Z ]/', '', $string);
 
-    // make it lowercase
     $string = strtolower($string);
 
     preg_match_all('/\b.*?\b/i', $string, $matchWords);
@@ -23,8 +20,8 @@ function getMostFrequentWords($string, $blackListWords, $limit = 5)
         }
     }
 
-    $word_count = str_word_count(implode(" ", $matchWords), 1);
-    $frequency = array_count_values($word_count);
+    $wordCount = str_word_count(implode(" ", $matchWords), 1);
+    $frequency = array_count_values($wordCount);
 
     arsort($frequency);
 
@@ -34,6 +31,5 @@ function getMostFrequentWords($string, $blackListWords, $limit = 5)
         $limit
     );
 
-    print_r($keywords);
-    // return $keywords;
+    return $keywords;
 }
